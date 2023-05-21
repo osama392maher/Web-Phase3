@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block title %} 
+Not Our Project 
+{% endblock %}
+
+{% block image%}
+{% endblock%}
+
+{% block CSS%}
+<link rel="stylesheet" href="{% static 'style/notfound.css' %}"> 
+{% endblock%}
+
+{% block content%}
+<h1>Sorry, this is not our project</h1>
+<p>Return to <a href="gate">homepage</a></p>
+{% endblock%}
+

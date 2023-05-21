@@ -1,0 +1,78 @@
+{% extends 'base.html'%}
+{% load static %}
+
+
+
+
+
+{% block title%}
+View all students
+{% endblock %}
+
+{% block CSS%}
+<link rel="stylesheet" href="{% static 'style/style.css' %}"> 
+{% endblock%}
+
+{% block nav%}
+<li><a href="/">Home</a></li>
+<li class="navBar-options">
+    <a href="#" class="options-btn">Options</a>
+    <div class="dropdown-content">
+        <a href="addStudent" class="active">Add new student</a>
+        <a href="viewStudents">View students</a>
+        <a href="assignDepartment"> Assign Department</a>
+    </div>
+</li>
+<li><a href="contact"> Contact Us</a></li>
+<li class="navBar-account">
+    <a href="#" class="account-btn">Account</a>
+</li>
+<li><a id="logout" href="">Logout</a></li>
+{% endblock%}
+
+{% block content%}
+<form action="department" method="post">
+    <input type="search" placeholder="Search" id="searchName" class="search"/> 
+    <select class="search-option">
+        <option value="0">Name</option>
+        <option value="1">ID</option>
+        <option value="2">Level</option>
+        <option value="3">Status</option>
+        <option value="4">Date of Birth</option>
+        <option value="5">GPA</option>
+        <option value="6">Gender</option>
+        <option value="7">Email</option>
+        <option value="8">Department</option>
+        <option value="9">Phone Number</option>
+      </select>
+              
+            <br />
+    <div class="view">
+        <table border="1" id = "student-table-body">
+            <caption align="" class="header_view"> <h1>All students</h1> </caption>
+            <thead>
+                <tr>
+
+                    <th>&ensp; Name &ensp; </th>
+                    <th>&ensp; ID &ensp;</th>
+                    <th>&ensp; Level &ensp;</th>
+                    <th>&ensp; Status &ensp;</th>
+                    <th>&ensp; Date of brith &ensp;</th>
+                    <th>&ensp; GPA &ensp;</th>
+                    <th>&ensp; Gender &ensp;</th>
+                    <th>&ensp; Email &ensp;</th>
+                    <th>&ensp; Department &ensp;</th>
+                    <th>&ensp; Phone number &ensp;</th>
+                    <th>&ensp; &ensp;</th>
+            </thead>
+        </table>
+    </div>
+</form>
+{% endblock %}
+
+
+
+
+{% block javaScript%}
+<script src="{% static 'scripts/view_all_students.js' %}"></script>
+{% endblock%}

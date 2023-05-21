@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            {% block title %} {% endblock %}
+        </title>
+        <meta charset="UTF-8" />
+        {% block CSS%} {% endblock%}
+    </head>
+
+    <body>
+        <header>
+            {% block image%} 
+            <img src="{% static 'images/final_logo.jpeg' %}"  alt="Logo" width="150" height="130"  />
+            {% endblock %} 
+            
+
+            <nav class="navigationBar">
+            {% block nav%}
+            
+            {% endblock%}
+            </nav>
+
+        </header>
+
+
+
+        {% block content%}
+
+
+        {% endblock %}
+
+
+
+
+
+       
+        
+
+
+        {% block javaScript %}
+        {% endblock %}
+    
+    </body>
+    
+</html>

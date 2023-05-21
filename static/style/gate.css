@@ -1,0 +1,89 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f1f1f1;
+}
+
+
+button {
+  padding: 0;
+  width: 180px;
+  height: 180px;
+  margin: 20px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  color: #fff;
+  background-color: #444;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+button:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 200px;
+  height: 200px;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  z-index: -1;
+  transition: all 0.3s ease-in-out;
+}
+
+button:hover:before {
+  transform: translate(-50%, -50%) scale(2);
+}
+
+button:hover {
+  transform: translateY(-5px);
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+button:nth-child(1) {
+  background-color: #59a9ff;
+}
+
+button:nth-child(2) {
+  background-color: #ff7b54;
+}
+
+button:nth-child(3) {
+  background-color: #9b59b6;
+}
+
+button:nth-child(4) {
+  background-color: #2ecc71;
+}
+
+button span {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  transform: translateY(10px);
+  transition: all 0.3s ease-in-out;
+}
+
+button:hover span {
+  transform: translateY(0);
+}
+
+.button-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}

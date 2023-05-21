@@ -1,0 +1,71 @@
+{% extends 'base.html'%}
+{% load static %}
+
+
+
+
+
+{% block title%}
+Contact Us
+{% endblock %}
+
+{% block CSS%}
+<link rel="stylesheet" href="{% static 'style/style.css' %}"> 
+{% endblock%}
+
+{% block nav%}
+<li><a href="/">Home</a></li>
+<li class="navBar-options">
+    <a href="#" class="options-btn">Options</a>
+    <div class="dropdown-content">
+        <a href="addStudent" class="active">Add new student</a>
+        <a href="viewStudents">View students</a>
+        <a href="assignDepartment"> Assign Department</a>
+    </div>
+</li>
+<li><a href="contact"> Contact Us</a></li>
+{% endblock%}
+
+{% block content%}
+<div class="teamMember">
+    <h1 class="mainTitle">Team Members</h1>
+    <div class="row">
+        <div class="col">
+            <img src="{% static 'images/male-avatar.png' %}" alt="picture" width="240" height="240" />
+            <br />
+            <a href="mailto:osama392maher@gmail.com" class="names">Osama Maher</a>
+        </div>
+        <div class="col">
+            <img src="{% static 'images/female-avatar.png' %}" alt="picture" width="240" height="240" />
+            <br />
+            <a href="mailto:aya851821@gmail.com" class="names">Aya Ashraf</a>
+        </div>
+        <div class="col">
+            <img src="{% static 'images/male-avatar.png' %}" alt="picture" width="240" height="240" />
+            <br />
+            <a href="mailto:awessam127@gmail.com" class="names">Ahmed Wessam</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <img src="{% static 'images/female-avatar.png' %}" alt="picture" width="240" height="240" />
+            <br />
+            <a href="mailto:hadeerabdelnaser94@gmail.com" class="names">Hadeer Khamis</a>
+        </div>
+        <div class="col">
+            <img src="{% static 'images/male-avatar.png' %}" alt="picture" width="240" height="240" />
+            <br />
+            <a href="mailto:omarkouta551@gmail.com" class="names">Omar Kouta</a>
+        </div>
+        <div class="col">
+            <img src="{% static 'images/male-avatar.png' %}" alt="picture" width="240" height="240" />
+            <br />
+            <a href="mailto:abdelazizyoussef2020@gmail.com" class="names">Youssef Ezzat</a>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+
+
+

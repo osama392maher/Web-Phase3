@@ -1,0 +1,112 @@
+{% extends 'base.html'%}
+{% load static %}
+
+
+
+
+{% block title%}
+Add new student
+{% endblock %}
+
+{% block CSS%}
+<link rel="stylesheet" href="{% static 'style/style.css' %}"> 
+{% endblock%}
+
+{% block nav%}
+<li><a href="/">Home</a></li>
+<li class="navBar-options">
+    <a href="#" class="options-btn">Options</a>
+    <div class="dropdown-content">
+        <a href="addStudent" class="active">Add new student</a>
+        <a href="viewStudents">View students</a>
+        <a href="assignDepartment"> Assign Department</a>
+    </div>
+</li>
+<li><a href="contact"> Contact Us</a></li>
+<li class="navBar-account">
+    <a href="#" class="account-btn">Account</a>
+</li>
+<li><a id="logout" href="">Logout</a></li>
+{% endblock%}
+
+{% block content%}
+<div class="container">
+    <form id="addStudentForm" action="" class="form">
+        <h1 class="mainTitleForm">Add New Student</h1>
+        <div class="add_new">
+            <input type="text" class="input" id="name">
+            <label class="label">Name</label>
+        </div>
+
+        <div class="add_new">
+            <input type="text" class="input" id="id">
+            <label class="label">ID</label>
+        </div>
+
+        <div class="add_new">
+            <input type="number" id="level" name="level" min="1" max="4" class="input"
+                id="level">
+            <label for="level" class="label">Level</label>
+        </div>
+
+        <div class="add_new">
+            <select name="Status" class="input" id="status">
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+            </select>
+            <label class="label">Status</label>
+        </div>
+
+        <div class="add_new">
+            <input type="date" class="input" id="date">
+            <label class="label">Date of birth</label>
+        </div>
+
+        <div class="add_new">
+            <select name="department" class="input" id="de">
+                <option value="CS">Computer Science</option>
+                <option value="IS">Information System</option>
+                <option value="AI">Artificial Intelligence</option>
+                <option value="DS">Decision Support</option>
+                <option value="IT">Information Technology</option>
+            </select>
+            <label class="label">Department</label>
+        </div>
+
+        <div class="add_new">
+            <input type="text" class="input" id="gpa">
+            <label class="label">GPA</label>
+        </div>
+
+        <div class="add_new">
+            <input type="email" class="input" id="email">
+            <label class="label">Email</label>
+        </div>
+
+        <div class="add_new">
+            <select name="gender" class="input" id="gender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+            <label class="label">Gender</label>
+        </div>
+
+        <div class="add_new">
+            <input type="tel" id="phone" name="phone"
+                pattern="(01)[0,1,2,5][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]" class="input"
+                id="phone">
+            <label for="phone" class="label">Phone Number</label>
+        </div>
+
+        <button type="submit" class="submit">Add New Student</button>
+
+    </form>
+</div>
+{% endblock %}
+
+
+
+
+{% block javaScript%}
+<script src=" {% static 'scripts/add_student.js' %}"></script>
+{% endblock%}

@@ -1,0 +1,68 @@
+{% extends 'base.html'%}
+{% load static %}
+
+
+
+
+
+{% block title%}
+Assign Department
+{% endblock %}
+
+{% block CSS%}
+<link rel="stylesheet" href="{% static 'style/style.css' %}"> 
+{% endblock%}
+
+{% block nav%}
+<li><a href="/">Home</a></li>
+<li class="navBar-options">
+    <a href="#" class="options-btn">Options</a>
+    <div class="dropdown-content">
+        <a href="addStudent" class="active">Add new student</a>
+        <a href="viewStudents">View students</a>
+        <a href="assignDepartment"> Assign Department</a>
+    </div>
+</li>
+<li><a href="contact"> Contact Us</a></li>
+<li class="navBar-account">
+    <a href="#" class="account-btn">Account</a>
+</li>
+<li><a id="logout" href="">Logout</a></li>
+{% endblock%}
+
+{% block content%}
+<div class="container">
+    <form id="addStudentForm" action="" class="form">
+        <h1 class="mainTitle">Assign Department</h1>
+        <div class="add_new">
+            <input disabled type="text" placeholder="Name" class="input" id="name">
+            <label class="label">Name</label>
+        </div>
+
+
+        <div class="add_new">
+          <input disabled type="text" placeholder="ID" class="input" id="id">
+          <label class="label">ID</label>
+      </div>
+
+      <div class="add_new">
+        <select name="department" class="input" id="de">
+            <option value="CS">Computer Science</option>
+            <option value="IS">Information System</option>
+            <option value="AI">Artificial Intelligence</option>
+            <option value="DS">Decision Support</option>
+            <option value="IT">Information Technology</option>
+        </select>
+        <label class="label">Department</label>
+    </div>
+    <button type="submit" id = "save-btn" class="submit">Assign</button>
+    </form>
+</div>
+{% endblock %}
+
+
+
+
+{% block javaScript%}
+<script src="{% static 'scripts/assign-department.js' %}"></script>
+{% endblock%}

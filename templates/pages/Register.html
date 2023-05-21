@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block title %} 
+Register 
+{% endblock %}
+
+{% block CSS%}
+<link rel="stylesheet" href="{% static 'style/style.css' %}"> 
+{% endblock%}
+
+{% block nav%}
+<li><a href="/">Home</a></li>
+<li class="navBar-options">
+    <a href="#" class="options-btn">Options</a>
+    <div class="dropdown-content">
+        <a href="addStudent" class="active">Add new student</a>
+        <a href="viewStudents">View students</a>
+        <a href="assignDepartment"> Assign Department</a>
+    </div>
+</li>
+<li><a href="contact"> Contact Us</a></li>
+<li class="navBar-account">
+    <a href="#" class="account-btn">Account</a>
+</li>
+<li><a id="logout" href="">Logout</a></li>
+{% endblock%}
+
+{% block content%}
+<div class="container">
+            <form id="addStudentForm" action="" class="form">
+                <h1 class="mainTitle">Register</h1>
+                <div class="add_new">
+                    <input type="text" placeholder="Username" class="input" id="username">
+                    <label class="label">Username</label>
+                </div>
+    
+                <div class="add_new">
+                    <input type="password" placeholder="password" class="input" id="password">
+                    <label class="label">password</label>
+                </div>
+
+                <button type="submit" class="submit">Register</button>
+
+            </form>
+</div>
+{% endblock%}
+
+
+{% block javaScript %}
+{% endblock %}
