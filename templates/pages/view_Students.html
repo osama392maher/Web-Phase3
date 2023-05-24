@@ -32,20 +32,22 @@ View all students
 
 {% block content%}
 <form action="department" method="post">
-    <input type="search" placeholder="Search" id="searchName" class="search"/> 
-    <select class="search-option">
-        <option value="0">Name</option>
-        <option value="1">ID</option>
-        <option value="2">Level</option>
-        <option value="3">Status</option>
-        <option value="4">Date of Birth</option>
-        <option value="5">GPA</option>
-        <option value="6">Gender</option>
-        <option value="7">Email</option>
-        <option value="8">Department</option>
-        <option value="9">Phone Number</option>
-      </select>
-              
+    <div class="search-container">
+        <input type="search" placeholder="Search" id="searchName" class="search"/> 
+        <select class="search-option">
+            <option value="0">Name</option>
+            <option value="1">ID</option>
+            <option value="2">Level</option>
+            <option value="3">Status</option>
+            <option value="4">Date of Birth</option>
+            <option value="5">GPA</option>
+            <option value="6">Gender</option>
+            <option value="7">Email</option>
+            <option value="8">Department</option>
+            <option value="9">Phone Number</option>
+        </select>
+    </div>
+    
             <br />
     <div class="view">
         <table border="1" id = "student-table-body">
@@ -65,6 +67,24 @@ View all students
                     <th>&ensp; Phone number &ensp;</th>
                     <th>&ensp; &ensp;</th>
             </thead>
+            <tbody>
+                {% for student in students %}
+                    <tr>
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.id }}</td>
+                    <td>{{ student.level }}</td>
+                    <td>{{ student.status }}</td>
+                    <td>{{ student.date }}</td>
+                    <td>{{ student.gpa }}</td>
+                    <td>{{ student.gender }}</td>
+                    <td>{{ student.email }}</td>
+                    <td>{{ student.department }}</td>
+                    <td>{{ student.phone }}</td>
+                    <td><a href="{% url 'Edit_students' %}?id={{ student.id }}" class="edit">&ensp; Edit &ensp;</a></td>
+                    </tr>
+                {% endfor %}
+
+            </tbody>
         </table>
     </div>
 </form>

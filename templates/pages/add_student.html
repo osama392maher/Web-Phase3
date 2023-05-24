@@ -31,15 +31,16 @@ Add new student
 
 {% block content%}
 <div class="container">
-    <form id="addStudentForm" action="" class="form">
+    <form id="addStudentForm" action="{% url 'add_Student' %}" class="form" method="post">
+        {% csrf_token %}
         <h1 class="mainTitleForm">Add New Student</h1>
         <div class="add_new">
-            <input type="text" class="input" id="name">
+            <input type="text" class="input" id="name" name="name">
             <label class="label">Name</label>
         </div>
 
         <div class="add_new">
-            <input type="text" class="input" id="id">
+            <input type="text" class="input" id="id" name="id">
             <label class="label">ID</label>
         </div>
 
@@ -50,7 +51,7 @@ Add new student
         </div>
 
         <div class="add_new">
-            <select name="Status" class="input" id="status">
+            <select name="Status" class="input" id="status" name = "status">
                 <option value="Active">Active</option>
                 <option value="Inactive">Inactive</option>
             </select>
@@ -58,12 +59,12 @@ Add new student
         </div>
 
         <div class="add_new">
-            <input type="date" class="input" id="date">
+            <input type="date" class="input" id="date" name="date">
             <label class="label">Date of birth</label>
         </div>
 
         <div class="add_new">
-            <select name="department" class="input" id="de">
+            <select name="de" class="input" id="de">
                 <option value="CS">Computer Science</option>
                 <option value="IS">Information System</option>
                 <option value="AI">Artificial Intelligence</option>
@@ -74,17 +75,17 @@ Add new student
         </div>
 
         <div class="add_new">
-            <input type="text" class="input" id="gpa">
+            <input type="text" class="input" id="gpa" name="gpa">
             <label class="label">GPA</label>
         </div>
 
         <div class="add_new">
-            <input type="email" class="input" id="email">
+            <input type="email" class="input" id="email" name="email">
             <label class="label">Email</label>
         </div>
 
         <div class="add_new">
-            <select name="gender" class="input" id="gender">
+            <select name="gender" class="input" id="gender" name = "gender">
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
             </select>
@@ -108,5 +109,4 @@ Add new student
 
 
 {% block javaScript%}
-<script src=" {% static 'scripts/add_student.js' %}"></script>
 {% endblock%}
