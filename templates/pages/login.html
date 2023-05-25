@@ -2,9 +2,6 @@
 {% load static %}
 
 
-
-
-
 {% block title%}
 Login Affairs
 {% endblock %}
@@ -26,30 +23,31 @@ Login Affairs
 <li><a href="contact"> Contact Us</a></li>
 {% endblock%}
 
-{% block content%}
+{% block content %}
 <div class="container">
-            <form id="addStudentForm" action="" class="form">
-                <h1 class="mainTitle">Login Affairs</h1>
-                <div class="add_new">
-                    <input type="text" placeholder="Username" class="input" id="username">
-                    <label class="label">Username</label>
-                </div>
-    
-                <div class="add_new">
-                    <input type="password" placeholder="password" class="input" id="password">
-                    <label class="label">password</label>
-                </div>
+    <form id="addStudentForm" method="post" action="{% url 'login' %}" class="form">
+        {% csrf_token %}
+        <h1 class="mainTitle">Login Affairs</h1>
+        <div class="add_new">
+            <input type="text" name="username" placeholder="Username" class="input" id="username">
+            <label class="label">Username</label>
+        </div>
 
-                <button type="submit" class="submit">Login</button>
+        <div class="add_new">
+            <input type="password" name="password" placeholder="Password" class="input" id="password">
+            <label class="label">Password</label>
+        </div>
 
-            </form>
+        <button type="submit" class="submit">Login</button>
+    </form>
 </div>
-
 {% endblock %}
 
 
 
 
-{% block javaScript%}
-<script src="{% static 'scripts/login.js' %}"></script>
-{% endblock%}
+
+
+<!--{% block javaScript%}-->
+<!--<script src="{% static 'scripts/login.js' %}"></script>-->
+<!--{% endblock%}-->
