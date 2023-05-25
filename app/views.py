@@ -17,7 +17,23 @@ def gate(request):
 
 
 def login(request):
-    return render(request, 'pages/login.html')
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request , username=username ,password=password)
+        if user is not None:
+            login(request,user)
+            print("Form submitted but login view executed , successfully")
+            return redirect('add_Student')
+        else:
+            messages.error(request,("invalid login , please try again"))
+            print("Form submitted but login view executed , none")
+            return redirect('login')
+
+    else:
+        print("method = "+ request.method)
+        print("  Form submitted but login view executed , noooooooneeeeee")
+        return render(request, 'pages/login.html')
 
 
 def notfound(request):
