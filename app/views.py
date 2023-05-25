@@ -41,8 +41,43 @@ def view_students(request):
     return render(request, 'pages/view_Students.html', {'students': students})
 
 
-def Edit_Students(request):
-    return render(request, 'pages/EditStudentsPage.html')
+def Edit_Students(request, student_id):
+    try:
+        student = Student.objects.get(id=student_id)
+    except Student.DoesNotExist:
+        return redirect('notfound')
+
+    if request.method == 'POST':
+        # Update student data based on the form submission
+        student.name = request.POST.get('name')
+        student.level = request.POST.get('level')
+        student.status = request.POST.get('status')
+        student.date = request.POST.get('date')
+        student.department = request.POST.get('de')
+        student.gpa = request.POST.get('gpa')
+        student.email = request.POST.get('email')
+        student.gender = request.POST.get('gender')
+        student.phone = request.POST.get('phone')
+        student.save()
+
+        return redirect('view_students')
+
+    # Render the template and pass the student data as context variables
+    return render(request, 'pages/EditStudentsPage.html', {'student': student})
+
+
+def delete_student(request):
+    if request.method == 'POST':
+        student_id = request.POST.get('student_id')
+        try:
+            student = Student.objects.get(id=student_id)
+            student.delete()
+            return redirect('view_students') 
+        except Student.DoesNotExist:
+            return redirect('view_students')  
+    else:
+        return redirect('view_students')
+
 
 
 def department(request):
@@ -75,6 +110,7 @@ def add_Students(request):
             id=student_id,
             level=level,
             date=date_of_birth,
+            status=status,
             department=department,
             gpa=gpa,
             email=email,

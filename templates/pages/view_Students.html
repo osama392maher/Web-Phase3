@@ -31,42 +31,39 @@ View all students
 {% endblock%}
 
 {% block content%}
-<form action="department" method="post">
-    <div class="search-container">
-        <input type="search" placeholder="Search" id="searchName" class="search"/> 
-        <select class="search-option">
-            <option value="0">Name</option>
-            <option value="1">ID</option>
-            <option value="2">Level</option>
-            <option value="3">Status</option>
-            <option value="4">Date of Birth</option>
-            <option value="5">GPA</option>
-            <option value="6">Gender</option>
-            <option value="7">Email</option>
-            <option value="8">Department</option>
-            <option value="9">Phone Number</option>
-        </select>
-    </div>
-    
-            <br />
-    <div class="view">
-        <table border="1" id = "student-table-body">
-            <caption align="" class="header_view"> <h1>All students</h1> </caption>
-            <thead>
-                <tr>
-
-                    <th>&ensp; Name &ensp; </th>
-                    <th>&ensp; ID &ensp;</th>
-                    <th>&ensp; Level &ensp;</th>
-                    <th>&ensp; Status &ensp;</th>
-                    <th>&ensp; Date of brith &ensp;</th>
-                    <th>&ensp; GPA &ensp;</th>
-                    <th>&ensp; Gender &ensp;</th>
-                    <th>&ensp; Email &ensp;</th>
-                    <th>&ensp; Department &ensp;</th>
-                    <th>&ensp; Phone number &ensp;</th>
-                    <th>&ensp; &ensp;</th>
-            </thead>
+    <form action="Department.html" method="post">
+      <div class="view" style="align-items: center; text-align: center;">
+        <table border="1" id="student-table-body">
+          <h1 class="header_view mb-25">All Students</h1>
+          <div class="search-container mb-25">
+            <input type="search" placeholder="Search" id="searchName" class="search" />
+            <select class="search-option">
+              <option value="0">Name</option>
+              <option value="1">ID</option>
+              <option value="2">Level</option>
+              <option value="3">Status</option>
+              <option value="4">Date of Birth</option>
+              <option value="5">GPA</option>
+              <option value="6">Gender</option>
+              <option value="7">Email</option>
+              <option value="8">Department</option>
+              <option value="9">Phone Number</option>
+            </select>
+          </div>
+          <thead>
+            <tr>
+              <th>&ensp; Name &ensp; </th>
+              <th>&ensp; ID &ensp;</th>
+              <th>&ensp; Level &ensp;</th>
+              <th>&ensp; Status &ensp;</th>
+              <th>&ensp; Date of brith &ensp;</th>
+              <th>&ensp; GPA &ensp;</th>
+              <th>&ensp; Gender &ensp;</th>
+              <th>&ensp; Email &ensp;</th>
+              <th>&ensp; Department &ensp;</th>
+              <th>&ensp; Phone number &ensp;</th>
+              <th>&ensp; &ensp;</th>
+          </thead>
             <tbody>
                 {% for student in students %}
                     <tr>
@@ -80,8 +77,8 @@ View all students
                     <td>{{ student.email }}</td>
                     <td>{{ student.department }}</td>
                     <td>{{ student.phone }}</td>
-                    <td><a href="{% url 'Edit_students' %}?id={{ student.id }}" class="edit">&ensp; Edit &ensp;</a></td>
-                    </tr>
+                    <td><a href="{% url 'Edit_students' student.id %}" class="edit">&ensp; Edit &ensp;</a></td>
+                  </tr>
                 {% endfor %}
 
             </tbody>

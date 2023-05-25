@@ -51,7 +51,7 @@ Add new student
         </div>
 
         <div class="add_new">
-            <select name="Status" class="input" id="status" name = "status">
+            <select class="input" id="status" name = "status">
                 <option value="Active">Active</option>
                 <option value="Inactive">Inactive</option>
             </select>
@@ -109,4 +109,5 @@ Add new student
 
 
 {% block javaScript%}
+    <script src="{% static 'scripts/validateForm.js' %}"></script>
 {% endblock%}
