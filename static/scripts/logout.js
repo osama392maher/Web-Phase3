@@ -1,21 +1,18 @@
+function logout() {
+    // Create a new form element
+    var form = document.createElement("form");
+    form.setAttribute("method", "post");
+    form.setAttribute("action", "/logout/");
 
-const loggedIn = localStorage.getItem("loggedIn");
-if (loggedIn !== "true") {
-    alert('You must be logged in to view this page.');
-    window.location.href = "/login";
+    // Regenerate the CSRF token
+    var csrf_token = document.getElementsByName("csrfmiddlewaretoken")[0].value;
+    var csrf = document.createElement("input");
+    csrf.setAttribute("type", "hidden");
+    csrf.setAttribute("name", "csrfmiddlewaretoken");
+    csrf.setAttribute("value", csrf_token);
+    form.appendChild(csrf);
+
+    // Submit the form
+    document.body.appendChild(form);
+    form.submit();
 }
-
-// Get the logout link from the navigation bar
-const logoutLink = document.querySelector('nav #logout');
-
-// Add a click event listener to the logout link
-logoutLink.addEventListener('click', (event) => {
-    // Prevent the default behavior of the link (i.e. following the link)
-    event.preventDefault();
-
-    localStorage.setItem('loggedIn', false);
-
-    // Redirect the user to the login pageß
-    window.location.href = '/login';
-
-});

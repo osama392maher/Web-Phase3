@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_protect
+from django.contrib import messages
+from django.views.decorators.http import require_POST
 
 from .models import User
 from .models import Student
@@ -9,32 +11,36 @@ from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
 def index(request):
+    if 'current_user' not in request.session:
+        return redirect('login')
     return render(request, 'pages/index.html')
 
 
 def gate(request):
     return render(request, 'pages/gate.html')
 
-
 def login(request):
     if request.method == "POST":
+
+        request.session.flush()
         username = request.POST.get('username')
         password = request.POST.get('password')
-        user = authenticate(request , username=username ,password=password)
-        if user is not None:
-            login(request,user)
-            print("Form submitted but login view executed , successfully")
-            return redirect('add_Student')
-        else:
-            messages.error(request,("invalid login , please try again"))
-            print("Form submitted but login view executed , none")
-            return redirect('login')
+        try:
+            user = User.objects.get(username=username)
+            if user.password == password:
+                request.session['current_user'] = username  # Store username in session
+                print("Form submitted and login successful")
+                return redirect('index')  # Redirect to 'index' URL
+        except User.DoesNotExist:
+            pass
+
+        messages.error(request, "Invalid login, please try again")
+        print("Form submitted, but login failed")
+        return redirect('login')
 
     else:
-        print("method = "+ request.method)
-        print("  Form submitted but login view executed , noooooooneeeeee")
+        print("Form not submitted")
         return render(request, 'pages/login.html')
-
 
 def notfound(request):
     return render(request, 'pages/notfound.html')
@@ -47,12 +53,14 @@ def register(request):
         password = request.POST.get('password')
         model = User(username=username, password=password)
         model.save()
-        return redirect('pages/add_student.html')
+        return redirect('index')
     else:
         return render(request, 'pages/Register.html')
 
 
 def view_students(request):
+    if 'current_user' not in request.session:
+        return redirect('login')
     students = Student.objects.all()
     return render(request, 'pages/view_Students.html', {'students': students})
 
@@ -77,7 +85,9 @@ def Edit_Students(request, student_id):
         student.save()
 
         return redirect('view_students')
-
+    else:
+        if 'current_user' not in request.session:
+            return redirect('login')
     # Render the template and pass the student data as context variables
     return render(request, 'pages/EditStudentsPage.html', {'student': student})
 
@@ -92,7 +102,9 @@ def delete_student(request):
         except Student.DoesNotExist:
             return redirect('view_students')  
     else:
-        return redirect('view_students')
+        if 'current_user' not in request.session:
+            return redirect('login')
+    return redirect('view_students')
 
 
 
@@ -137,6 +149,15 @@ def add_Students(request):
         student.save()
 
         return redirect('view_students')
+    else:
+        if 'current_user' not in request.session:
+            return redirect('login')
 
     return render(request, 'pages/add_student.html')
+
+
+def logout(request):
+    request.session.flush()
+    return redirect('login')
+    
 

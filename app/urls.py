@@ -16,5 +16,6 @@ urlpatterns = [
     path('assignDepartment', views.assign_Department, name='assign_Department'),
     path('contact', views.contact, name='contact'),
     path('department', views.department, name='department'),
+    path('logout', views.logout, name='logout'),
 ]
  
