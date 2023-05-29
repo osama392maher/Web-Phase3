@@ -65,6 +65,7 @@ Add new student
 
         <div class="add_new">
             <select name="de" class="input" id="de">
+                <option value="NO">Not Assigned Yet</option>
                 <option value="CS">Computer Science</option>
                 <option value="IS">Information System</option>
                 <option value="AI">Artificial Intelligence</option>
@@ -100,7 +101,9 @@ Add new student
         </div>
 
         <button type="submit" class="submit">Add New Student</button>
-
+        <!-- add Random Student that do to Rand url-->
+        <a href="{% url 'Rand' %}" class="submit">Add Random Student</a>
+        
     </form>
 </div>
 {% endblock %}

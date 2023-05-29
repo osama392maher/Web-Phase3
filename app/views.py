@@ -2,11 +2,16 @@ from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_protect
 from django.contrib import messages
 from django.views.decorators.http import require_POST
+import random
 
 from .models import User
 from .models import Student
 
 from django.contrib.auth.forms import UserCreationForm
+
+import string
+from datetime import date
+
 
 
 # Create your views here.
@@ -65,6 +70,31 @@ def view_students(request):
     return render(request, 'pages/view_Students.html', {'students': students})
 
 
+def assign_Department(request):
+    if 'current_user' not in request.session:
+        return redirect('login')
+    students = Student.objects.all()
+    return render(request, 'pages/Assign_Department.html', {'students': students})
+
+
+def department(request, student_id):
+    try:
+        student = Student.objects.get(id=student_id)
+    except Student.DoesNotExist:
+        return redirect('notfound')
+    
+    if request.method == 'POST':
+        # Update student data based on the form submission
+        if student.level >= 3:
+            student.department = request.POST.get('de')
+            student.save()
+            return redirect('assign_Department')
+        else:
+            error_message = "This action is only applicable for students of level over 3."
+            return render(request, 'error.html', {'error_message': error_message})
+    return render(request, 'pages/Department.html', {'student': student})
+
+
 def Edit_Students(request, student_id):
     try:
         student = Student.objects.get(id=student_id)
@@ -108,16 +138,12 @@ def delete_student(request):
 
 
 
-def department(request):
-    return render(request, 'pages/Department.html')
 
 
 def contact(request):
     return render(request, 'pages/contact.html')
 
 
-def assign_Department(request):
-    return render(request, 'pages/Assign_Department.html')
 
 
 def add_Students(request):
@@ -158,6 +184,53 @@ def add_Students(request):
 
 def logout(request):
     request.session.flush()
+    messages.success(request, "You have been logged out")
     return redirect('login')
+
+def Rand(request):
+    #array of departments
+    department_choices = ['NO', 'CS', 'IS', 'AI', 'DS', 'IT']
+    status_choices = ['Active', 'Inactive']
+    gender_choices = ['Male', 'Female']
+    #array of names
+    names = ['Ahmed', 'Mohamed', 'Ali', 'Omar', 'Mahmoud', 'Khaled', 'Hassan', 'Abdullah', 'Abdelrahman', 'Youssef', 'Amr', 'Yahia', 'Mostafa', 'Hussein', 'Ibrahim', 'Adham', 'Othman', 'Yehia']
+    
+    #email will be name.name@name
+    #phone will be random 11 digits
+    #gpa will be random float from 0 to 4
+    #level will be random int from 1 to 4
+    #date will be random date from 1990 to 2000
+    #department will be random from array of departments
+    #status will be random from array of status
+
+  # Generate random data for each student
+    name = random.choice(names)
+    student_id = ''.join(random.choices(string.digits, k=6))
+    level = random.randint(1, 4)
+    status = random.choice(status_choices)
+    birth_date = date(random.randint(1990, 2000), random.randint(1, 12), random.randint(1, 28))
+    gpa = round(random.uniform(0, 4), 2)
+    gender = random.choice(gender_choices)
+    department = random.choice(department_choices)
+    email = f'{name.lower()}.{name.lower()}@{name.lower()}'
+    phone = ''.join(random.choices(string.digits, k=11))
+
+    # Create a new student instance
+    student = Student(
+        name=name,
+        id=student_id,
+        level=level,
+        status=status,
+        date=birth_date,
+        gpa=gpa,
+        gender=gender,
+        department=department,
+        email=email,
+        phone=phone
+    )
+
+    # Save the student to the database
+    student.save()
+    return redirect('view_students')
     
 
