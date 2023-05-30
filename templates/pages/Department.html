@@ -35,6 +35,7 @@ Assign Department
 
         <div class="add_new">
             <select name="de" class="input" id="de" name = "de">
+                <option value="NO" {% if student.department == 'NO' %}selected{% endif %}>Not Assigned Yet</option>
                 <option value="CS" {% if student.department == 'CS' %}selected{% endif %}>Computer Science</option>
                 <option value="IS" {% if student.department == 'IS' %}selected{% endif %}>Information System</option>
                 <option value="AI" {% if student.department == 'AI' %}selected{% endif %}>Artificial Intelligence</option>

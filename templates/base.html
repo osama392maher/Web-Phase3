@@ -22,12 +22,12 @@
                 <li class="navBar-options">
                     <a href="#" class="options-btn">Options</a>
                     <div class="dropdown-content">
-                        <a href="addStudent" class="active">Add new student</a>
-                        <a href="viewStudents">View students</a>
-                        <a href="assignDepartment"> Assign Department</a>
+                        <a href="{% url 'add_Student'%}" class="active">Add new student</a>
+                        <a href="{% url 'view_students'%}">View students</a>
+                        <a href="{% url 'assign_Department'%}"> Assign Department</a>
                     </div>
                 </li>
-                <li><a href="contact"> Contact Us</a></li>
+                <li><a href="{% url 'contact'%}"> Contact Us</a></li>
                 <li class="navBar-account">
                 </li>
                 <li><a id="logout" href="/logout">Logout</a></li>
