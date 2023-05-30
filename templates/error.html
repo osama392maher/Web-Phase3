@@ -1,8 +1,9 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
 <head>
   <title>Error</title>
-  <link rel="stylesheet" href="{% static 'style/style.css' %}">
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -22,6 +23,10 @@
       padding: 20px;
       margin-top: 20px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      /* center */
+      display: flex;
+      justify-content: center;
+    
     }
 
     .return-button {
@@ -45,8 +50,8 @@
   <div class="error-message">
     <p>{{ error_message }}</p>
   </div>
-  <div class="return-button">
-    <a href="assign_Department">Back</a>
+  <div class="return-button"> 
+    <a href="{% url 'assign_Department' %}">Return to home page</a>   
   </div>
 </body>
 </html>
