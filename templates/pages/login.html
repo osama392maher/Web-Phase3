@@ -1,7 +1,6 @@
 {% extends 'base.html'%}
 {% load static %}
 
-
 {% block title%}
 Login Affairs
 {% endblock %}
@@ -19,6 +18,13 @@ Login Affairs
     <form id="addStudentForm" method="post" action="{% url 'login' %}" class="form">
         {% csrf_token %}
         <h1 class="mainTitle">Login Affairs</h1>
+        {% if messages %}
+        <div class="error-message">
+            {% for message in messages %}
+            <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
         <div class="add_new">
             <input type="text" name="username" placeholder="Username" class="input" id="username">
             <label class="label">Username</label>
@@ -33,7 +39,3 @@ Login Affairs
     </form>
 </div>
 {% endblock %}
-
-
-
-

@@ -373,6 +373,59 @@ td button {
     color: #125681;
 }
 
+/* .error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .error-message p {
+    margin: 0;
+  } */
+  
+
+  .error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .error-message p {
+    margin: 0;
+  }
+  
+  .error-message p:first-child {
+    margin-top: 0;
+  }
+  
+  .error-message p:last-child {
+    margin-bottom: 0;
+  }
+  
+  .error-message p::before {
+    content: "⚠ ";
+  }
+  
+  .error-message p {
+    display: flex;
+    align-items: center;
+  }
+  
+  .error-message p::before {
+    margin-right: 5px;
+    font-size: 18px;
+  }
+  
+  
+
+
+
 
 
 

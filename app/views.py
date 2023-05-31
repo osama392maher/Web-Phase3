@@ -26,7 +26,6 @@ def gate(request):
 
 def login(request):
     if request.method == "POST":
-
         request.session.flush()
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -36,16 +35,18 @@ def login(request):
                 request.session['current_user'] = username  # Store username in session
                 print("Form submitted and login successful")
                 return redirect('index')  # Redirect to 'index' URL
+            else:
+                messages.error(request, "Invalid password, please try again")
         except User.DoesNotExist:
-            pass
-
-        messages.error(request, "Invalid login, please try again")
+            messages.error(request, "Username does not exist")
+        
         print("Form submitted, but login failed")
         return redirect('login')
 
     else:
         print("Form not submitted")
         return render(request, 'pages/login.html')
+
 
 def notfound(request):
     return render(request, 'pages/notfound.html')
@@ -184,7 +185,6 @@ def add_Students(request):
 
 def logout(request):
     request.session.flush()
-    messages.success(request, "You have been logged out")
     return redirect('login')
 
 def Rand(request):
