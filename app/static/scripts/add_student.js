@@ -9,5 +9,3 @@ levelInput.addEventListener("change", function () {
         departmentSelect.disabled = false;
     }
 });
-
-
